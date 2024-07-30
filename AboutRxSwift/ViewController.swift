@@ -18,26 +18,80 @@ class ViewController: UIViewController {
     let examplePickerView = UIPickerView()
     let exampleLabel = UILabel()
     
+    let exampleSwitch = UISwitch()
+    
+    let exampleNameTextField = UITextField()
+    let exampleEmailTextField = UITextField()
+    
     let disposeBag = DisposeBag()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        setSign()
+//        setSwitch()
 //        setTableView()
-        setPickerView()
+//        setPickerView()
     }
     
     
     
     
+    func setSign() {
+        
+        view.addSubview(exampleLabel)
+        view.addSubview(exampleNameTextField)
+        view.addSubview(exampleEmailTextField)
+        
+        exampleNameTextField.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.height.equalTo(60)
+        }
+        exampleNameTextField.backgroundColor = .systemBlue
+        
+        exampleEmailTextField.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(exampleNameTextField.snp.bottom).offset(20)
+            make.height.equalTo(60)
+        }
+        exampleEmailTextField.backgroundColor = .systemCyan
+        
+        exampleLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(exampleEmailTextField.snp.bottom).offset(30)
+            make.height.equalTo(50)
+        }
+        exampleLabel.backgroundColor = .systemYellow
+        
+        Observable.combineLatest(exampleNameTextField.rx.text.orEmpty, exampleEmailTextField.rx.text.orEmpty) { value1, value2 in
+            return "name은 \(value1), email is \(value2)"
+        }
+        .bind(to: exampleLabel.rx.text)
+        .disposed(by: disposeBag)
+        
+        
+        exampleNameTextField.rx.text.orEmpty
+            .map {$0.count < 4 }
+            .bind(to: exampleLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+    }
     
     
     
-    
-    
-    
+    func setSwitch() {
+        view.addSubview(exampleSwitch)
+        exampleSwitch.snp.makeConstraints { make in
+            make.center.equalTo(view.safeAreaLayoutGuide)
+            
+        }
+        
+        Observable.of(false)
+            .bind(to: exampleSwitch.rx.isOn)
+            .disposed(by: disposeBag)
+    }
     func setPickerView() {
         print(#function)
         
