@@ -29,11 +29,65 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setSign()
+//        setSign()
 //        setSwitch()
 //        setTableView()
 //        setPickerView()
+        exampleJustOF()
     }
+    
+    
+    
+    func exampleJustOF() {
+        
+        // 하나의 값만 emit
+        
+        let itemsA = [1.0, 4.0 , 5.5, 6.7, 8.0, 9.9]
+        let itemsB = [1.1, 2.2, 3.3, 4.4]
+        
+        print("=======just=======")
+        Observable.just(itemsA)
+            .subscribe(with: self) { owner, value in
+                print(value)
+            } onDisposed: { owner in
+                print("disposed")
+            }
+            .disposed(by: disposeBag)
+        print("=======of=======")
+        
+        Observable.of(itemsA, itemsB)
+            .subscribe(with: self) { owner, value in
+                print(value)
+            } onDisposed: { owner in
+                print("disposed")
+            }
+            .disposed(by: disposeBag)
+        
+        print("=======from=======")
+        Observable.from(itemsA)
+            .subscribe(with: self) { owner, value in
+                print(value)
+            } onDisposed: { owner in
+                print("disposer")
+            }
+            .disposed(by: disposeBag)
+
+        
+        print("=======take=======")
+        Observable.repeatElement("abcdefg")
+            .take(2)
+            .subscribe(with: self) { owner, value in
+                print(value)
+            } onDisposed: { owner in
+                print("disposer")
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
+    
+    
+    
     
     
     
