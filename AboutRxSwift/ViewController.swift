@@ -163,6 +163,7 @@ class ViewController: UIViewController {
         exampleLabel.backgroundColor = .systemBlue
         examplePickerView.backgroundColor = .lightGray
         
+        // 옵져버블 생성
         let items = Observable.just([
             "영화",
             "애니메이션",
@@ -170,6 +171,7 @@ class ViewController: UIViewController {
             "기타"
         ])
         
+        // 옵져버가 옵져버블 구독
         items.bind(to: examplePickerView.rx.itemTitles) { (row, element) in
             return element
         }
@@ -178,7 +180,7 @@ class ViewController: UIViewController {
 
         
         examplePickerView.rx.modelSelected(String.self)
-            .map { $0.description }
+            .map { $0.description } // exampleLabel.rx.text = 00 중 00
             .bind(to: exampleLabel.rx.text)
             .disposed(by: disposeBag)
            
@@ -193,6 +195,8 @@ class ViewController: UIViewController {
         }
         exmapleTableView.backgroundColor = .lightGray
             
+        
+        
         let items = Observable.just([
             "딸기",
             "수박",
