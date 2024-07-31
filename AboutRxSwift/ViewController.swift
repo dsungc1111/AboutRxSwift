@@ -162,6 +162,7 @@ class ViewController: UIViewController {
         }
         exampleLabel.backgroundColor = .systemBlue
         examplePickerView.backgroundColor = .lightGray
+        
         let items = Observable.just([
             "영화",
             "애니메이션",
