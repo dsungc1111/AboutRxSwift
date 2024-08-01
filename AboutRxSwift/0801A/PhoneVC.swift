@@ -22,7 +22,6 @@ final class PhoneVC: UIViewController {
     }()
     
     private var userPhoneNumber = BehaviorRelay(value: "010")
-//    private var getPhoneNumber = PublishSubject<String>()
     
     
     private let disposeBag = DisposeBag()
@@ -41,11 +40,27 @@ final class PhoneVC: UIViewController {
         //숫자만?
         // 추가적인 예외처리 - 숫자
         // 숫자일때만 넣어주고
+        
+        //  userPhoneNumber > behaviorSubject
+        
+        
         userPhoneNumber
             .bind(with: self) { owner, value in
                 owner.phoneTextField.text = value
             }
             .disposed(by: disposeBag)
+        
+        phoneTextField.rx.text.orEmpty
+            .map { text in
+                text.filter { "0123456789".contains($0) }
+            }
+            .bind(with: self, onNext: { owner, value in
+                owner.userPhoneNumber.accept(value)
+            })
+            .disposed(by: disposeBag)
+        
+        
+        
         
         let phoneInvalid = phoneTextField.rx.text.orEmpty
             .map { $0.count >= 10 }
@@ -58,12 +73,7 @@ final class PhoneVC: UIViewController {
         
         
         
-        phoneTextField.rx.text.orEmpty
-            .map { "\($0)" }
-            .bind(with: self, onNext: { owner, value in
-                owner.userPhoneNumber.accept(value)
-            })
-            .disposed(by: disposeBag)
+    
         
     
         
@@ -80,6 +90,7 @@ final class PhoneVC: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.height.equalTo(50)
         }
+
         nextButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
