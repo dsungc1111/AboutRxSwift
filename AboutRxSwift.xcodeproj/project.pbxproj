@@ -18,6 +18,9 @@
 		8BA78F172C59B10D004C0C72 /* NumbersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F162C59B10D004C0C72 /* NumbersVC.swift */; };
 		8BA78F192C59B98A004C0C72 /* PickerViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F182C59B98A004C0C72 /* PickerViewVC.swift */; };
 		8BA78F1F2C59FDE3004C0C72 /* tableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F1E2C59FDE3004C0C72 /* tableViewVC.swift */; };
+		8BA78F242C5BAA9E004C0C72 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F232C5BAA9E004C0C72 /* LoginVC.swift */; };
+		8BA78F262C5BAD80004C0C72 /* SignTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */; };
+		8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F272C5BB654004C0C72 /* PhoneVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		8BA78F162C59B10D004C0C72 /* NumbersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersVC.swift; sourceTree = "<group>"; };
 		8BA78F182C59B98A004C0C72 /* PickerViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewVC.swift; sourceTree = "<group>"; };
 		8BA78F1E2C59FDE3004C0C72 /* tableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableViewVC.swift; sourceTree = "<group>"; };
+		8BA78F232C5BAA9E004C0C72 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTextfield.swift; sourceTree = "<group>"; };
+		8BA78F272C5BB654004C0C72 /* PhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		8B47CBF92C59155800C411DF /* AboutRxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				8BA78F222C5BAA7B004C0C72 /* 0801A */,
 				8B47CBFA2C59155800C411DF /* AppDelegate.swift */,
 				8B47CBFC2C59155800C411DF /* SceneDelegate.swift */,
 				8B47CBFE2C59155800C411DF /* ViewController.swift */,
@@ -77,6 +84,16 @@
 				8BA78F1E2C59FDE3004C0C72 /* tableViewVC.swift */,
 			);
 			path = AboutRxSwift;
+			sourceTree = "<group>";
+		};
+		8BA78F222C5BAA7B004C0C72 /* 0801A */ = {
+			isa = PBXGroup;
+			children = (
+				8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */,
+				8BA78F232C5BAA9E004C0C72 /* LoginVC.swift */,
+				8BA78F272C5BB654004C0C72 /* PhoneVC.swift */,
+			);
+			path = 0801A;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,10 +175,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA78F262C5BAD80004C0C72 /* SignTextfield.swift in Sources */,
 				8B47CBFF2C59155800C411DF /* ViewController.swift in Sources */,
 				8B47CBFB2C59155800C411DF /* AppDelegate.swift in Sources */,
 				8B47CBFD2C59155800C411DF /* SceneDelegate.swift in Sources */,
 				8BA78F172C59B10D004C0C72 /* NumbersVC.swift in Sources */,
+				8BA78F242C5BAA9E004C0C72 /* LoginVC.swift in Sources */,
+				8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */,
 				8BA78F1F2C59FDE3004C0C72 /* tableViewVC.swift in Sources */,
 				8BA78F192C59B98A004C0C72 /* PickerViewVC.swift in Sources */,
 			);
