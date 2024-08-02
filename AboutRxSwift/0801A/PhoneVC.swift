@@ -44,12 +44,16 @@ final class PhoneVC: UIViewController {
         //  userPhoneNumber > behaviorSubject
         
         
+        
+        
+        // 초기값 010 세팅
         userPhoneNumber
             .bind(with: self) { owner, value in
                 owner.phoneTextField.text = value
             }
             .disposed(by: disposeBag)
         
+        // 텍스트 입력받을 때 숫자만 입력 받게 설정
         phoneTextField.rx.text.orEmpty
             .map { text in
                 text.filter { "0123456789".contains($0) }
@@ -59,24 +63,24 @@ final class PhoneVC: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        
-        
-        
+        // 최소 10자리 설정
         let phoneInvalid = phoneTextField.rx.text.orEmpty
             .map { $0.count >= 10 }
             
+        // 10자리 넘으면 파란색, 그 미안 빨간색
         phoneInvalid
             .bind(with: self, onNext: { owner, result in
                 owner.nextButton.backgroundColor = result ? .systemBlue : .systemRed
+                owner.nextButton.isEnabled = result
             })
             .disposed(by: disposeBag)
         
-        
-        
-    
-        
-    
-        
+        // 다음페이지 화면 전환
+        nextButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(BirthdayVC(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     func configureLayout() {
