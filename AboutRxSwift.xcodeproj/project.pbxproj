@@ -22,6 +22,8 @@
 		8BA78F262C5BAD80004C0C72 /* SignTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */; };
 		8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F272C5BB654004C0C72 /* PhoneVC.swift */; };
 		8BA78F2E2C5CD33A004C0C72 /* BirthdayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F2D2C5CD33A004C0C72 /* BirthdayVC.swift */; };
+		8BA78F302C5D080D004C0C72 /* ShoppingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */; };
+		8BA78F322C5DAC67004C0C72 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTextfield.swift; sourceTree = "<group>"; };
 		8BA78F272C5BB654004C0C72 /* PhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVC.swift; sourceTree = "<group>"; };
 		8BA78F2D2C5CD33A004C0C72 /* BirthdayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayVC.swift; sourceTree = "<group>"; };
+		8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingVC.swift; sourceTree = "<group>"; };
+		8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				8BA78F232C5BAA9E004C0C72 /* LoginVC.swift */,
 				8BA78F272C5BB654004C0C72 /* PhoneVC.swift */,
 				8BA78F2D2C5CD33A004C0C72 /* BirthdayVC.swift */,
+				8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */,
+				8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */,
 			);
 			path = 0801A;
 			sourceTree = "<group>";
@@ -183,9 +189,11 @@
 				8B47CBFB2C59155800C411DF /* AppDelegate.swift in Sources */,
 				8B47CBFD2C59155800C411DF /* SceneDelegate.swift in Sources */,
 				8BA78F172C59B10D004C0C72 /* NumbersVC.swift in Sources */,
+				8BA78F302C5D080D004C0C72 /* ShoppingVC.swift in Sources */,
 				8BA78F242C5BAA9E004C0C72 /* LoginVC.swift in Sources */,
 				8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */,
 				8BA78F1F2C59FDE3004C0C72 /* tableViewVC.swift in Sources */,
+				8BA78F322C5DAC67004C0C72 /* SearchTableViewCell.swift in Sources */,
 				8BA78F192C59B98A004C0C72 /* PickerViewVC.swift in Sources */,
 				8BA78F2E2C5CD33A004C0C72 /* BirthdayVC.swift in Sources */,
 			);
@@ -404,7 +412,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
-				kind = upToNextMinorVersion;
+				kind = upToNextMajorVersion;
 				minimumVersion = 5.7.1;
 			};
 		};
@@ -412,7 +420,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
+				kind = upToNextMinorVersion;
 				minimumVersion = 6.7.1;
 			};
 		};

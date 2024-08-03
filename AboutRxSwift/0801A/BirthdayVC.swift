@@ -87,12 +87,21 @@ final class BirthdayVC: UIViewController {
                     owner.userInfoLabel.text = "현재 \(value)살, 만 17세 미만입니다."
                     owner.userInfoLabel.textColor = .red
                     owner.completeButton.backgroundColor = .lightGray
+                    owner.completeButton.isEnabled = false
                 } else {
                     owner.userInfoLabel.text = "현재 \(value)살, 만 17세 이상입니다."
                     owner.userInfoLabel.textColor = .systemBlue
                     owner.completeButton.backgroundColor = .systemBlue
+                    owner.completeButton.isEnabled = true
                 }
             })
+            .disposed(by: disposeBag)
+        
+        
+        completeButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(ShoppingVC(), animated: true)
+            }
             .disposed(by: disposeBag)
     }
     
