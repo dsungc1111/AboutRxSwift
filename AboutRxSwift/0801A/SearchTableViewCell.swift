@@ -15,33 +15,32 @@ class SearchTableViewCell: UITableViewCell {
     static let identifier = "SearchTableViewCell"
     
     
-    private let completeButton = {
+    let completeButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         return btn
     }()
-    private var isComplete = false
+     var isComplete = false
     let todoLabel = {
         let label = UILabel()
         label.text = "ㅇㅇㄹㄴㅁㅇㄹㅇㄹㅇㄴ"
         return label
     }()
     
-    private let bookmarkButton = {
+    let bookmarkButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "star"), for: .normal)
         return btn
     }()
-    private var isBookmark = false
+    var isBookmark = false
     
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
         configure()
-        bind()
     }
     
     
@@ -77,25 +76,4 @@ class SearchTableViewCell: UITableViewCell {
         }
     }
     
-    func bind() {
-        
-        completeButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.isComplete.toggle()
-                
-                let image = owner.isComplete ? "checkmark.square.fill" : "checkmark.square"
-                owner.completeButton.setImage(UIImage(systemName: image), for: .normal)
-            }
-            .disposed(by: disposeBag)
-        
-        
-        bookmarkButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.isBookmark.toggle()
-                
-                let image = owner.isBookmark ? "star.fill" : "star"
-                owner.bookmarkButton.setImage(UIImage(systemName: image), for: .normal)
-            }
-            .disposed(by: disposeBag)
-    }
 }

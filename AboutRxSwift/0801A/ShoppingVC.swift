@@ -43,6 +43,25 @@ final class ShoppingVC: UIViewController {
         
         
         list.bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
+            
+            cell.completeButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    cell.isComplete.toggle()
+                    
+                    let image = cell.isComplete ? "checkmark.square.fill" : "checkmark.square"
+                    cell.completeButton.setImage(UIImage(systemName: image), for: .normal)
+                }
+                .disposed(by: cell.disposeBag)
+            
+            cell.bookmarkButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    cell.isBookmark.toggle()
+                    
+                    let image = cell.isBookmark ? "star.fill" : "star"
+                    cell.bookmarkButton.setImage(UIImage(systemName: image), for: .normal)
+                }
+                .disposed(by: cell.disposeBag)
+            
             cell.todoLabel.text = element
             }
             .disposed(by: disposeBag)
@@ -54,7 +73,6 @@ final class ShoppingVC: UIViewController {
             .bind(with: self) { owner, value in
                 let result = value == "" ? owner.data : owner.data.filter { $0.contains(value)}
                 owner.list.accept(result)
-                print(value)
             }
             .disposed(by: disposeBag)
     }
