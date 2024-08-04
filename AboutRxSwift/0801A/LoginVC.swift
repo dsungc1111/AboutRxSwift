@@ -56,18 +56,9 @@ final class LoginVC: UIViewController {
             }
             .disposed(by: disposeBag)
         
-       Observable.combineLatest(emailInvalid, pwInvalid) { $0 && $1 }
-            .bind(with: self) { owner, result in
-                owner.validLabel.text = result ? "닉네임을 입력해주세요." :  "이메일과 비밀번호를 확인해주세요"
-                owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
-                owner.nicknameTextField.isEnabled = result
-            }
-            .disposed(by: disposeBag)
-            
         
         nicknameValid
             .bind(with: self) { owner, result in
-                print(result)
                 if owner.nicknameTextField.text != "" {
                     owner.signButton.backgroundColor = result ? .systemBlue : .lightGray
                     owner.signButton.isEnabled = result
@@ -76,9 +67,21 @@ final class LoginVC: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        Observable.combineLatest(emailInvalid, pwInvalid, nicknameValid) { $0 && $1 && $2 }
+             .bind(with: self) { owner, result in
+                 owner.validLabel.text = result ? "가입이 가능해요." :  "가입 조건을 확인해주세요"
+                 owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
+             }
+             .disposed(by: disposeBag)
         
-        
-        
+        Observable.combineLatest(emailInvalid, pwInvalid) { $0 && $1 }
+             .bind(with: self) { owner, result in
+                 owner.validLabel.text = result ? "닉네임을 입력해주세요." :  "이메일과 비밀번호를 확인해주세요"
+                 owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
+                 owner.nicknameTextField.isEnabled = result
+             }
+             .disposed(by: disposeBag)
+             
         signButton.rx.tap
             .bind(with: self) { owner, _ in
                 print("dsadfdfsdfdsfas")
