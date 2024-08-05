@@ -16,8 +16,6 @@ final class LoginVC: UIViewController {
     private let emailTextField = SignTextfield(placeholderText: "이메일을 입력해주세요.")
     private let passwordTextField = SignTextfield(placeholderText: "비밀번호를 입력해주세요.")
     private let nicknameTextField = SignTextfield(placeholderText: "닉네임을 입력해주세요.")
-    
-    
     private let signButton = {
         let btn = UIButton()
         btn.setTitle("로그인", for: .normal)
@@ -26,7 +24,8 @@ final class LoginVC: UIViewController {
     }()
     
     private let validLabel = UILabel()
-    private let userList = ["UserA", "UserB", "UserC", "UserD"]
+    private let loginViewModel = LoginViewModel()
+    
     
     private let disposeBag = DisposeBag()
     
@@ -41,14 +40,12 @@ final class LoginVC: UIViewController {
     
     private func bind() {
         
-        let emailInvalid = emailTextField.rx.text.orEmpty
-            .map { $0.count >= 4 && $0.contains("@") } // 4자리 이상 & @ 포함 > T
-        let pwInvalid = passwordTextField.rx.text.orEmpty
-            .map { $0.count >= 8 } // 8자리 이상 T
-        let nicknameValid = nicknameTextField.rx.text.orEmpty
-            .map { !self.userList.contains($0) && $0.count >= 4 && !$0.contains(" ")}
         
-        emailInvalid
+        let input = LoginViewModel.Input(emailText: emailTextField.rx.text, pwText: passwordTextField.rx.text, nicknameText: nicknameTextField.rx.text, loginTap: signButton.rx.tap)
+        
+        let output = loginViewModel.transform(input: input)
+        
+        output.emailValid
             .bind(with: self) { owner, result in
                 owner.passwordTextField.placeholder = result ? "비밀번호를 입력해주세요." : "이메일부터 입력해주세요!"
                 owner.passwordTextField.isEnabled = result
@@ -57,7 +54,7 @@ final class LoginVC: UIViewController {
             .disposed(by: disposeBag)
         
         
-        nicknameValid
+        output.nicknameValid
             .bind(with: self) { owner, result in
                 if owner.nicknameTextField.text != "" {
                     owner.signButton.backgroundColor = result ? .systemBlue : .lightGray
@@ -67,14 +64,20 @@ final class LoginVC: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(emailInvalid, pwInvalid, nicknameValid) { $0 && $1 && $2 }
+        output.pwValid
+            .bind(with: self) { owner, result in
+             
+                owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(output.emailValid, output.pwValid, output.nicknameValid) { $0 && $1 && $2 }
              .bind(with: self) { owner, result in
-                 owner.validLabel.text = result ? "가입이 가능해요." :  "가입 조건을 확인해주세요"
-                 owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
+                 owner.validLabel.text = result ? "가입이 가능해요." :  "닉네임을 입력해주세요."
              }
              .disposed(by: disposeBag)
         
-        Observable.combineLatest(emailInvalid, pwInvalid) { $0 && $1 }
+        Observable.combineLatest(output.emailValid, output.pwValid) { $0 && $1 }
              .bind(with: self) { owner, result in
                  owner.validLabel.text = result ? "닉네임을 입력해주세요." :  "이메일과 비밀번호를 확인해주세요"
                  owner.passwordTextField.layer.borderColor = result ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
@@ -82,9 +85,8 @@ final class LoginVC: UIViewController {
              }
              .disposed(by: disposeBag)
              
-        signButton.rx.tap
+        output.loginTap
             .bind(with: self) { owner, _ in
-                print("dsadfdfsdfdsfas")
                 owner.navigationController?.pushViewController(PhoneVC(), animated: true)
             }
             .disposed(by: disposeBag)

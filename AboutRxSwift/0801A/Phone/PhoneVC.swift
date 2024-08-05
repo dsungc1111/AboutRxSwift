@@ -21,9 +21,7 @@ final class PhoneVC: UIViewController {
         return btn
     }()
     
-    private var userPhoneNumber = BehaviorRelay(value: "010")
-    
-    
+    private let viewModel = PhoneViewModel()
     private let disposeBag = DisposeBag()
     
     
@@ -37,38 +35,22 @@ final class PhoneVC: UIViewController {
     
     private func bind() {
         
-        //숫자만?
-        // 추가적인 예외처리 - 숫자
-        // 숫자일때만 넣어주고
-        
-        //  userPhoneNumber > behaviorSubject
-        
-        
-        
-        
-        // 초기값 010 세팅
-        userPhoneNumber
-            .bind(with: self) { owner, value in
-                owner.phoneTextField.text = value
-            }
+        viewModel.outPutSetPhoneNumber
+            .bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         
-        // 텍스트 입력받을 때 숫자만 입력 받게 설정
-        phoneTextField.rx.text.orEmpty
-            .map { text in
-                text.filter { "0123456789".contains($0) }
-            }
+        let input = PhoneViewModel.Input(phoneText: phoneTextField.rx.text, nextButtonTap: nextButton.rx.tap)
+        
+        let output = viewModel.transform(input: input)
+        
+        
+        output.changedPhoneNumber
             .bind(with: self, onNext: { owner, value in
-                owner.userPhoneNumber.accept(value)
+                owner.viewModel.outPutSetPhoneNumber.accept(value)
             })
             .disposed(by: disposeBag)
         
-        // 최소 10자리 설정
-        let phoneInvalid = phoneTextField.rx.text.orEmpty
-            .map { $0.count >= 10 }
-            
-        // 10자리 넘으면 파란색, 그 미안 빨간색
-        phoneInvalid
+        output.phoneNumeberValidation
             .bind(with: self, onNext: { owner, result in
                 owner.nextButton.backgroundColor = result ? .systemBlue : .systemRed
                 owner.nextButton.isEnabled = result
@@ -76,7 +58,7 @@ final class PhoneVC: UIViewController {
             .disposed(by: disposeBag)
         
         // 다음페이지 화면 전환
-        nextButton.rx.tap
+        output.nextButtontap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(BirthdayVC(), animated: true)
             }
