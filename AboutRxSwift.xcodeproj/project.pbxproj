@@ -26,6 +26,8 @@
 		8BA78F322C5DAC67004C0C72 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */; };
 		8BA78F3B2C609A3D004C0C72 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F3A2C609A3D004C0C72 /* LoginViewModel.swift */; };
 		8BA78F3F2C60A8E9004C0C72 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F3E2C60A8E9004C0C72 /* PhoneViewModel.swift */; };
+		8BA78F422C60B4F5004C0C72 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */; };
+		8BA78F452C60BFF2004C0C72 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		8BA78F3A2C609A3D004C0C72 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8BA78F3E2C60A8E9004C0C72 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
+		8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +103,11 @@
 		8BA78F222C5BAA7B004C0C72 /* 0801A */ = {
 			isa = PBXGroup;
 			children = (
+				8BA78F432C60BFDF004C0C72 /* Shopping */,
+				8BA78F402C60B4E1004C0C72 /* Birthday */,
 				8BA78F3D2C60A8D5004C0C72 /* Phone */,
 				8BA78F392C609A29004C0C72 /* Login */,
 				8BA78F252C5BAD80004C0C72 /* SignTextfield.swift */,
-				8BA78F2D2C5CD33A004C0C72 /* BirthdayVC.swift */,
-				8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */,
-				8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */,
 			);
 			path = 0801A;
 			sourceTree = "<group>";
@@ -125,6 +128,25 @@
 				8BA78F3E2C60A8E9004C0C72 /* PhoneViewModel.swift */,
 			);
 			path = Phone;
+			sourceTree = "<group>";
+		};
+		8BA78F402C60B4E1004C0C72 /* Birthday */ = {
+			isa = PBXGroup;
+			children = (
+				8BA78F2D2C5CD33A004C0C72 /* BirthdayVC.swift */,
+				8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */,
+			);
+			path = Birthday;
+			sourceTree = "<group>";
+		};
+		8BA78F432C60BFDF004C0C72 /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */,
+				8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */,
+				8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */,
+			);
+			path = Shopping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,9 +234,11 @@
 				8B47CBFD2C59155800C411DF /* SceneDelegate.swift in Sources */,
 				8BA78F172C59B10D004C0C72 /* NumbersVC.swift in Sources */,
 				8BA78F302C5D080D004C0C72 /* ShoppingVC.swift in Sources */,
+				8BA78F452C60BFF2004C0C72 /* ShoppingViewModel.swift in Sources */,
 				8BA78F242C5BAA9E004C0C72 /* LoginVC.swift in Sources */,
 				8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */,
 				8BA78F3B2C609A3D004C0C72 /* LoginViewModel.swift in Sources */,
+				8BA78F422C60B4F5004C0C72 /* BirthdayViewModel.swift in Sources */,
 				8BA78F3F2C60A8E9004C0C72 /* PhoneViewModel.swift in Sources */,
 				8BA78F1F2C59FDE3004C0C72 /* tableViewVC.swift in Sources */,
 				8BA78F322C5DAC67004C0C72 /* SearchTableViewCell.swift in Sources */,

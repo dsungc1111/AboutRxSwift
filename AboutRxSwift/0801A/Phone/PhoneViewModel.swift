@@ -42,6 +42,7 @@ class PhoneViewModel {
                 text.filter { "0123456789".contains($0) }
             }
         
+        
         let phoneValidation = input.phoneText.orEmpty
         .map { $0.count >= 10  }
         

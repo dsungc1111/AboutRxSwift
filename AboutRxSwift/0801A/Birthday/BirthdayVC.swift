@@ -46,42 +46,26 @@ final class BirthdayVC: UIViewController {
     var nowAge = BehaviorRelay(value: 0)
     
     let disposeBag = DisposeBag()
-    
+    let viewModel = BirthdayViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureLayout()
         bind()
+        
     }
     
     func bind() {
         
-        datePicker.rx.date
-            .bind(with: self) { owner, value in
-                let component = Calendar.current.dateComponents([.day, .month, .year], from: value)
-                owner.dateLabel.text = BirthdayVC.getDateString(date: value)
-    
-                // 오늘
-                guard let todayMonth = Int(BirthdayVC.getTodayMonth(date: owner.today)) else { return }
-                guard let todayDay = Int(BirthdayVC.getTodayday(date: owner.today)) else { return }
-    
-                // 생일
-                guard let birthMonth = component.month else { return }
-                guard let birthDay = component.day else { return }
-                var age = 2024 - (component.year ?? 0) - 1
-                
-                if birthMonth == todayMonth {
-                    if birthDay <= todayDay {
-                        age += 1
-                    }
-                } else if birthMonth < todayMonth {
-                    age += 1
-                }
-                owner.nowAge.accept(age)
-            }
+        let input = BirthdayViewModel.Input(datepick: datePicker.rx.date, completeButtonTap: completeButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+       
+        output.pickDate
+            .bind(to: dateLabel.rx.text)
             .disposed(by: disposeBag)
-      
-        nowAge
+        
+        output.nowAge
             .bind(with: self, onNext: { owner, value in
                 if value < 17 {
                     owner.userInfoLabel.text = "현재 \(value)살, 만 17세 미만입니다."
@@ -98,7 +82,7 @@ final class BirthdayVC: UIViewController {
             .disposed(by: disposeBag)
         
         
-        completeButton.rx.tap
+        output.completeButtonTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(ShoppingVC(), animated: true)
             }
