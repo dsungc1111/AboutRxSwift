@@ -25,15 +25,11 @@ final class ShoppingVC: UIViewController {
         view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         return view
     }()
-    private var data = [
-        "과제제출", "RxSwift", "UIkit", "SwiftUI", "iOS", "macOS"
-    ]
-    
-    private lazy var list = BehaviorRelay(value: data)
     
     private let viewModel = ShoppingViewModel()
     
     private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -43,13 +39,11 @@ final class ShoppingVC: UIViewController {
     }
     
     func bind() {
-        let input = ShoppingViewModel.Input(list: list, searchText: searchBar.rx.text, searchTap: searchBar.rx.searchButtonClicked)
+        let input = ShoppingViewModel.Input(searchText: searchBar.rx.text, searchTap: searchBar.rx.searchButtonClicked)
         
         let output = viewModel.transform(input: input)
 
 
-     
-        
         output.searchResult
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 
@@ -74,32 +68,7 @@ final class ShoppingVC: UIViewController {
                 cell.todoLabel.text = element
                 }
                 .disposed(by: disposeBag)
-            
-        
-//
-//        output.searchResult
-//            .bind(with: self) { owner, value in
-//                owner.list.accept(value)
-//            }
-//            .disposed(by: disposeBag)
-        
-//        searchBar.rx.text.orEmpty
-//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-//            .distinctUntilChanged()
-//            .bind(with: self) { owner, value in
-//                let result = value == "" ? owner.data : owner.data.filter { $0.contains(value) }
-//                owner.list.accept(result)
-//            }
-//            .disposed(by: disposeBag)
-        
-        
-//        searchBar.rx.searchButtonClicked
-//            .bind(with: self) { owner, _ in
-//                guard let text = owner.searchBar.text else { return }
-//                owner.data.insert(text, at: 0)
-//            }
-//            .disposed(by: disposeBag)
-        
+     
     }
     
     func configureLayout() {
