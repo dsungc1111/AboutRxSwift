@@ -26,6 +26,15 @@ final class ShoppingVC: UIViewController {
         return view
     }()
     
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout() )
+    
+    static func layout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 80, height: 40)
+        layout.scrollDirection = .horizontal
+        return layout
+    }
+    
     private let viewModel = ShoppingViewModel()
     
     private let disposeBag = DisposeBag()
@@ -39,13 +48,29 @@ final class ShoppingVC: UIViewController {
     }
     
     func bind() {
-        let input = ShoppingViewModel.Input(searchText: searchBar.rx.text, searchTap: searchBar.rx.searchButtonClicked)
+        
+       
+        
+        let input = ShoppingViewModel.Input(searchText: searchBar.rx.text, searchTap: searchBar.rx.searchButtonClicked, tapRec: collectionView.rx.modelSelected(String.self))
         
         let output = viewModel.transform(input: input)
 
-
-        output.searchResult
-            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
+        // 컬렉션뷰
+        output.recommandedList
+            .bind(to: collectionView.rx.items(cellIdentifier: ShoppingCollectionViewCell.identifier, cellType: ShoppingCollectionViewCell.self)) { (row, element, cell) in
+                
+                cell.label.text = element
+                
+            }
+            .disposed(by: disposeBag)
+        
+        
+        
+        
+        
+        
+        output.shoppingList
+            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) {  (row, element, cell) in
                 
                 cell.completeButton.rx.tap
                     .bind(with: self) { owner, _ in
@@ -68,6 +93,10 @@ final class ShoppingVC: UIViewController {
                 cell.todoLabel.text = element
                 }
                 .disposed(by: disposeBag)
+        
+        
+        
+        
      
     }
     
@@ -75,15 +104,22 @@ final class ShoppingVC: UIViewController {
         
         view.addSubview(searchBar)
         view.addSubview(tableView)
+        view.addSubview(collectionView)
         
         searchBar.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(60)
         }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(5)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(60)
+        }
+        collectionView.register(ShoppingCollectionViewCell.self, forCellWithReuseIdentifier: ShoppingCollectionViewCell.identifier)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(30)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(250)
+            make.top.equalTo(collectionView.snp.bottom).offset(30)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+            
         }
     }
 }

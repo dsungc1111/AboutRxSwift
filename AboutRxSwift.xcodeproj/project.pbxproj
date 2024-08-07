@@ -28,6 +28,7 @@
 		8BA78F3F2C60A8E9004C0C72 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F3E2C60A8E9004C0C72 /* PhoneViewModel.swift */; };
 		8BA78F422C60B4F5004C0C72 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */; };
 		8BA78F452C60BFF2004C0C72 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */; };
+		8BA78F552C633AFB004C0C72 /* ShoppingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F542C633AFB004C0C72 /* ShoppingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		8BA78F3E2C60A8E9004C0C72 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 		8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
+		8BA78F542C633AFB004C0C72 /* ShoppingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				8BA78F2F2C5D080D004C0C72 /* ShoppingVC.swift */,
 				8BA78F312C5DAC67004C0C72 /* SearchTableViewCell.swift */,
 				8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */,
+				8BA78F542C633AFB004C0C72 /* ShoppingCollectionViewCell.swift */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA78F552C633AFB004C0C72 /* ShoppingCollectionViewCell.swift in Sources */,
 				8BA78F262C5BAD80004C0C72 /* SignTextfield.swift in Sources */,
 				8B47CBFF2C59155800C411DF /* ViewController.swift in Sources */,
 				8B47CBFB2C59155800C411DF /* AppDelegate.swift in Sources */,
