@@ -36,7 +36,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func callRequset(date: String) -> Observable<Movie> {
+    func callRequset(date: String) -> Single<Movie> {
         
         var component = URLComponents()
         component.scheme = "https"
@@ -49,32 +49,33 @@ final class NetworkManager {
         
         let request = URLRequest(url: component.url!)
         
-        let result = Observable<Movie>.create { observer in
+        let result = Single<Movie>.create { single in
          
+            let aa: Movie = Movie(boxOfficeResult: BoxOfficeResult(dailyBoxOfficeList: [DailyBoxOfficeList(movieNm: "", openDt: "")]))
             URLSession.shared.dataTask(with: request) { data, response, error in
                 
                 guard error == nil else {
                     print("error")
-                    observer.onError(NetworkError.failedRequest)
+                    single(.success(aa))
                     return
                 }
                 guard let data = data else {
-                    observer.onError(NetworkError.noData)
+                    single(.failure(NetworkError.invalidData))
                     return
                 }
                 guard let response = response as? HTTPURLResponse else {
-                    observer.onError(NetworkError.invalidURL)
+                    single(.failure(NetworkError.invalidResponse))
                     return
                 }
                 guard response.statusCode == 200 else {
-                    observer.onError(NetworkError.invalidResponse)
+                    single(.failure(NetworkError.invalidResponse))
                     return
                 }
                 
                 if let appData = try? JSONDecoder().decode(Movie.self, from: data) {
-                    observer.onNext(appData)
-                    observer.onCompleted()
-                    
+//                    observer.onNext(appData)
+//                    observer.onCompleted()
+                    single(.success(appData))
                 }
                 
             }.resume()
