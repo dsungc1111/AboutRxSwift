@@ -42,20 +42,18 @@ final class JokeVC: UIViewController {
         // 굳이굳이 예시를 위한 상황 세팅
         // text를 레이블과 네비게이션바 타이틀에 세팅할거
         
-        
-        output.text
-            .bind(with: self) { owner, value in
-                owner.textLabel.text = value
-                print("얘도 실행")
-            }
-            .disposed(by: disposeBag)
-        
-        output.text
-            .bind(with: self) { owner, value in
-                owner.navigationItem.title = value
-                print("야도 실행22")
-            }
-            .disposed(by: disposeBag)
+//        
+//        output.text
+//            .subscribe(with: self) { owner, value in
+//                owner.textLabel.text = value
+//            }
+//            .disposed(by: disposeBag)
+//        
+//        output.text
+//            .subscribe(with: self) { owner, value in
+//                owner.navigationItem.title = value
+//            }
+//            .disposed(by: disposeBag)
     }
     
     func configureLayout() {

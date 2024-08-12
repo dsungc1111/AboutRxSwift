@@ -19,16 +19,16 @@ class MovieViewModel {
         let searchText: ControlProperty<String>
     }
     struct Output {
-        let movieList: PublishSubject<[DailyBoxOfficeList]>
+        let movieList: Driver<[DailyBoxOfficeList]>
     }
     
     
     func transform(input: Input) -> Output {
         
-        var topMovies = PublishSubject<[DailyBoxOfficeList]>()
+//        var topMovies = PublishSubject<[DailyBoxOfficeList]>()
         
-        input.searchTap
-            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+        let topMovies = input.searchTap
+//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.searchText)
             .distinctUntilChanged()
             .map {
@@ -41,11 +41,16 @@ class MovieViewModel {
             .flatMap { value in
                 NetworkManager.shared.callRequset(date: value)
             }
-            .subscribe(with: self, onNext: { owner, value in
-               
-                topMovies.onNext(value.boxOfficeResult.dailyBoxOfficeList)
-            })
-            .disposed(by: disposeBag)
+            .map { value in
+                value.boxOfficeResult.dailyBoxOfficeList
+            }
+//            .subscribe(with: self, onNext: { owner, value in
+////                topMovies.onNext(value.boxOfficeResult.dailyBoxOfficeList)
+//                
+//
+//            })
+//            .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn:  [DailyBoxOfficeList(movieNm: "아니야 ", openDt: "제발")])
         
         return Output(movieList: topMovies)
     }

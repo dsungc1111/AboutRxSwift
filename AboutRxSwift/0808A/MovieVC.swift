@@ -30,11 +30,10 @@ final class MovieVC: UIViewController {
         
         let input = MovieViewModel.Input(searchTap: movieView.searchBar.rx.searchButtonClicked, searchText: movieView.searchBar.rx.text.orEmpty )
         
-        let a = movieView.searchBar.rx.text
         let output = viewModel.transform(input: input)
         
         output.movieList
-            .bind(to: movieView.tableView.rx.items(cellIdentifier: MovietableViewCell.identifier, cellType: MovietableViewCell.self)) {
+            .drive(movieView.tableView.rx.items(cellIdentifier: MovietableViewCell.identifier, cellType: MovietableViewCell.self)) {
                 (row, element, cell) in
                 
                 cell.movieTitle.text = element.movieNm

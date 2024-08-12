@@ -17,23 +17,35 @@ final class JokeViewModel {
         let tap: ControlEvent<Void>
     }
     struct Output {
-        let text: PublishSubject<String>
+        let text: Driver<Joke>
     }
     
     
     func transform(input: Input) -> Output {
+//
+//        let result = PublishSubject<String>()
         
-        let result = PublishSubject<String>()
         
-        input.tap
-            .flatMap{JokeNetwork.shared.fetchJoke()}
-            .subscribe(with: self) { owner, value in
-                result.onNext(value.joke)
+//        input.tap
+//            .flatMap{JokeNetwork.shared.fetchJoke()}
+//            .subscribe(with: self) { owner, value in
+//                result.onNext(value.joke)
+//            }
+//            .disposed(by: disposeBag)
+        
+        
+       let result = input.tap
+            .flatMap{
+                JokeNetwork.shared.fetchJokeWithSingle()
+                    .catch { error in
+                        return Single<Joke>.just(Joke(joke: "rhkdus?", id: 0))
+                    }
             }
-            .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn: Joke(joke: "실패했을땐 이거임", id: 0))
         
         
         return Output(text: result)
     }
+    
     
 }

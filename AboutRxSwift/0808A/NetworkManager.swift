@@ -53,7 +53,6 @@ final class NetworkManager {
          
             URLSession.shared.dataTask(with: request) { data, response, error in
                 
-                
                 guard error == nil else {
                     print("error")
                     observer.onError(NetworkError.failedRequest)
