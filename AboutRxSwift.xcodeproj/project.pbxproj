@@ -36,6 +36,10 @@
 		8BA78F422C60B4F5004C0C72 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */; };
 		8BA78F452C60BFF2004C0C72 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */; };
 		8BA78F552C633AFB004C0C72 /* ShoppingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA78F542C633AFB004C0C72 /* ShoppingCollectionViewCell.swift */; };
+		8BC986202C69D9C800B69112 /* JokeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC9861F2C69D9C800B69112 /* JokeVC.swift */; };
+		8BC986222C69D9D700B69112 /* JokeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC986212C69D9D700B69112 /* JokeNetwork.swift */; };
+		8BC986252C69D9EC00B69112 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC986242C69D9EC00B69112 /* Alamofire */; };
+		8BC986272C69DE9300B69112 /* JokeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC986262C69DE9300B69112 /* JokeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,9 @@
 		8BA78F412C60B4F5004C0C72 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 		8BA78F442C60BFF2004C0C72 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
 		8BA78F542C633AFB004C0C72 /* ShoppingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BC9861F2C69D9C800B69112 /* JokeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeVC.swift; sourceTree = "<group>"; };
+		8BC986212C69D9D700B69112 /* JokeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNetwork.swift; sourceTree = "<group>"; };
+		8BC986262C69DE9300B69112 /* JokeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B47CC1A2C59167300C411DF /* RxSwift in Frameworks */,
+				8BC986252C69D9EC00B69112 /* Alamofire in Frameworks */,
 				8B47CC182C59167300C411DF /* RxCocoa in Frameworks */,
 				8B47CC152C5915DB00C411DF /* SnapKit in Frameworks */,
 			);
@@ -103,6 +111,8 @@
 		8B47CBF92C59155800C411DF /* AboutRxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				8BC9861E2C69D9AA00B69112 /* Single */,
+				8BC9861D2C69D98C00B69112 /* FirstRxSwift */,
 				8B7AD2C62C649CC90002F764 /* 0808A */,
 				8BA78F222C5BAA7B004C0C72 /* 0801A */,
 				8B47CBFA2C59155800C411DF /* AppDelegate.swift */,
@@ -111,9 +121,6 @@
 				8B47CC032C59155A00C411DF /* Assets.xcassets */,
 				8B47CC052C59155A00C411DF /* LaunchScreen.storyboard */,
 				8B47CC082C59155A00C411DF /* Info.plist */,
-				8BA78F162C59B10D004C0C72 /* NumbersVC.swift */,
-				8BA78F182C59B98A004C0C72 /* PickerViewVC.swift */,
-				8BA78F1E2C59FDE3004C0C72 /* tableViewVC.swift */,
 				8B7AD2C12C6483350002F764 /* APIKey.swift */,
 			);
 			path = AboutRxSwift;
@@ -181,6 +188,26 @@
 			path = Shopping;
 			sourceTree = "<group>";
 		};
+		8BC9861D2C69D98C00B69112 /* FirstRxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				8BA78F162C59B10D004C0C72 /* NumbersVC.swift */,
+				8BA78F182C59B98A004C0C72 /* PickerViewVC.swift */,
+				8BA78F1E2C59FDE3004C0C72 /* tableViewVC.swift */,
+			);
+			path = FirstRxSwift;
+			sourceTree = "<group>";
+		};
+		8BC9861E2C69D9AA00B69112 /* Single */ = {
+			isa = PBXGroup;
+			children = (
+				8BC9861F2C69D9C800B69112 /* JokeVC.swift */,
+				8BC986212C69D9D700B69112 /* JokeNetwork.swift */,
+				8BC986262C69DE9300B69112 /* JokeViewModel.swift */,
+			);
+			path = Single;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +228,7 @@
 				8B47CC142C5915DB00C411DF /* SnapKit */,
 				8B47CC172C59167300C411DF /* RxCocoa */,
 				8B47CC192C59167300C411DF /* RxSwift */,
+				8BC986242C69D9EC00B69112 /* Alamofire */,
 			);
 			productName = AboutRxSwift;
 			productReference = 8B47CBF72C59155800C411DF /* AboutRxSwift.app */;
@@ -233,6 +261,7 @@
 			packageReferences = (
 				8B47CC132C5915DB00C411DF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				8B47CC162C59167300C411DF /* XCRemoteSwiftPackageReference "RxSwift" */,
+				8BC986232C69D9EC00B69112 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8B47CBF82C59155800C411DF /* Products */;
 			projectDirPath = "";
@@ -264,6 +293,7 @@
 				8B7AD2C52C648ACC0002F764 /* NetworkManager.swift in Sources */,
 				8BA78F552C633AFB004C0C72 /* ShoppingCollectionViewCell.swift in Sources */,
 				8BA78F262C5BAD80004C0C72 /* SignTextfield.swift in Sources */,
+				8BC986272C69DE9300B69112 /* JokeViewModel.swift in Sources */,
 				8B47CBFF2C59155800C411DF /* ViewController.swift in Sources */,
 				8B47CBFB2C59155800C411DF /* AppDelegate.swift in Sources */,
 				8B47CBFD2C59155800C411DF /* SceneDelegate.swift in Sources */,
@@ -272,12 +302,14 @@
 				8B7AD2CE2C649EEE0002F764 /* MovietableViewCell.swift in Sources */,
 				8BA78F452C60BFF2004C0C72 /* ShoppingViewModel.swift in Sources */,
 				8B7AD2C82C649CF10002F764 /* MovieVC.swift in Sources */,
+				8BC986202C69D9C800B69112 /* JokeVC.swift in Sources */,
 				8BA78F242C5BAA9E004C0C72 /* LoginVC.swift in Sources */,
 				8BA78F282C5BB654004C0C72 /* PhoneVC.swift in Sources */,
 				8BA78F3B2C609A3D004C0C72 /* LoginViewModel.swift in Sources */,
 				8BA78F422C60B4F5004C0C72 /* BirthdayViewModel.swift in Sources */,
 				8BA78F3F2C60A8E9004C0C72 /* PhoneViewModel.swift in Sources */,
 				8BA78F1F2C59FDE3004C0C72 /* tableViewVC.swift in Sources */,
+				8BC986222C69D9D700B69112 /* JokeNetwork.swift in Sources */,
 				8B7AD2CA2C649D080002F764 /* MovieView.swift in Sources */,
 				8BA78F322C5DAC67004C0C72 /* SearchTableViewCell.swift in Sources */,
 				8BA78F192C59B98A004C0C72 /* PickerViewVC.swift in Sources */,
@@ -512,6 +544,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		8BC986232C69D9EC00B69112 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -529,6 +569,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B47CC162C59167300C411DF /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		8BC986242C69D9EC00B69112 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BC986232C69D9EC00B69112 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
